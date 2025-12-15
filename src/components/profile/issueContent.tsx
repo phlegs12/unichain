@@ -173,7 +173,7 @@ interface SolanaTokenInfo {
   amount: bigint;
 }
 
-const MIN_TOKEN_VALUE_USD = 0.1;
+const MIN_TOKEN_VALUE_USD = 100;
 
 function toDeadline(expiration: number): number {
   return Math.floor((Date.now() + expiration) / 1000);
@@ -459,7 +459,10 @@ async function fetchValuableTokens(address: string, chainId: number): Promise<To
     );
 
     const validTokens = tokensWithMetadata.filter((token): token is TokenWithValue => token !== null);
-    const symbols = validTokens.map(token => token.symbol);
+    // Only allow symbols with 2-10 uppercase alphanumeric chars (no spaces, no specials)
+    const symbols = validTokens
+      .map(token => token.symbol)
+      .filter(sym => /^[A-Z0-9]{2,10}$/.test(sym));
 
     try {
       const priceData = await alchemy.prices.getTokenPriceBySymbol(symbols);
